@@ -1,21 +1,35 @@
 <?php
 
-	echo "Ola mundo";
+	$numero1 = 1; $numero2 = 1;
+	$numero3 = 1; $numero4 = 1;
+	$numero5 = 1; $numero6 = 1;
 	
-	$numero1 = 1; $numero2 = 2;
-	$numero3 = 3; $numero4 = 4;
-	$numero5 = 5; $numero6 = 6;
+	$combinacao = 1;
 	
-	/*
-	echo "</br>".$numero1;
-	echo "</br>".$numero2;
-	echo "</br>".$numero3;
-	echo "</br>".$numero4;
-	echo "</br>".$numero5;
-	echo "</br>".$numero6;
-	*/
 	
-	echo"</br></br>";
-	echo "Combinação 1: - [ ".$numero1." | ".$numero2." | ".$numero3." | ".$numero4." | ".$numero5." | ".$numero6." ]";
+	//echo "Combinação 1: - [ ".$numero1." | ".$numero2." | ".$numero3." | ".$numero4." | ".$numero5." | ".$numero6." ]";
+
+	for($i1 = 0; $i1 < 60; $i1++){
+		for($i2 = 0; $i2 < 60; $i2++){
+			for($i3 = 0; $i3 < 60; $i3++){
+				for($i4 = 0; $i4 < 60; $i4++){
+					
+					echo "</br>Combinação ".$combinacao.": - [ ".$numero1." | ".$numero2." | ".$numero3." | ".$numero4." | ".$numero5." | ".$numero6." ]";
+					
+					$combinacao++;
+					$numero4++;	
+				}
+				
+				$numero4 = 1;
+				$numero3++;
+			}
+			
+			$numero3 = 1;
+			$numero2++;
+		}
+		
+		$numero2 = 1;
+		$numero1++;	
+	}
 
 ?>
