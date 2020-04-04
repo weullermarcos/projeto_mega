@@ -1,7 +1,21 @@
 <?php
 
+/*
 
-	function imprime($valor1, $valor2, $valor3, $valor4, $valor5, $valor6){
+Autor: Weuller Marcos - Engenheiro de Computação
+Data Inicio: 03/04/2020
+Data Fim: XX/XX/2020
+
+Última modificação: 03/04/2020
+
+*/
+
+
+	
+	// Função que verifica se os numeros informados são diferentes entre si
+	// Recebe como parâmetro os números que serão verificados
+	// Retorna true ou false informando se os números são diferentes entre si ou não
+	function numerosDiferentes($valor1, $valor2, $valor3, $valor4, $valor5, $valor6){
 
 
 		if($valor1 == $valor2 || $valor1 == $valor3 || $valor1 == $valor4 || $valor1 == $valor5 || $valor1 == $valor6 ||
@@ -22,24 +36,29 @@
 	$combinacao = 1;
 	
 
-	echo "<br/>Passando valores diferentes";
+	// Função que verifica se o numero anterior é menor que o seguinte da combinação
+	// Recebe como parâmetro os números que serão verificados
+	// Retorna true ou false informando se o número anterior for menor e false caso contrário
+	function numeroAnteriorMenor($valor1, $valor2, $valor3, $valor4, $valor5, $valor6){
 
-	if(imprime(1,2,3,4,5,6))
-		echo"<br/>Impremeu";
+		// [1,2,3,4,5,6]
+		// [1,2,3,4,6,5]
+		// [1,2,3,5,4,6]
+		// [1,2,3,6,5,4]
 
+		if($valor5 > $valor6 || $valor4 > $valor5 || $valor3 > $valor4 || $valor2 > $valor3 || $valor1 > $valor2){
 
+			return false;
+		}
 
-	echo "<br/><br/>Passando valores iguais";
+		return true;
 
-	if(imprime(1,2,3,4,5,6))
-		echo"<br/>Impremeu";
-
-
+	}
 
 	
 	//echo "Combinação 1: - [ ".$numero1." | ".$numero2." | ".$numero3." | ".$numero4." | ".$numero5." | ".$numero6." ]";
 
-	/*
+	/**/
 
 	for($i1 = 0; $i1 < 60; $i1++){
 		for($i2 = 0; $i2 < 60; $i2++){
@@ -48,9 +67,14 @@
 					for($i5 = 0; $i5 < 60; $i5++){
 						for($i6 = 0; $i6 < 60; $i6++){
 
-							echo "</br>Combinação ".$combinacao.": - [ ".$numero1." | ".$numero2." | ".$numero3." | ".$numero4." | ".$numero5." | ".$numero6." ]";
+							if(numerosDiferentes($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
+							   numeroAnteriorMenor($numero1, $numero2, $numero3, $numero4, $numero5, $numero6)){
+								
+								echo "</br>Combinação ".$combinacao.": - [ ".$numero1." | ".$numero2." | ".$numero3." | ".$numero4." | ".$numero5." | ".$numero6." ]";
+								
+								$combinacao++;
+							}
 					
-							$combinacao++;
 							$numero6++;	
 						}
 
@@ -74,7 +98,7 @@
 		$numero1++;	
 	}
 
-	*/
+	
 
 ?>
 
