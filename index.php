@@ -1,6 +1,6 @@
 <?php
 
-//ini_set('max_execution_time', 1200); //aumentando tempo de execução do programa para 300 segundos ou 5 minutos
+ini_set('max_execution_time', 2400); //aumentando tempo de execução do programa para 300 segundos ou 5 minutos
 
 /*
 
@@ -8,7 +8,7 @@ Autor: Weuller Marcos - Engenheiro de Computação
 Data Inicio: 03/04/2020
 Data Fim: XX/XX/2020
 
-Última modificação: 04/04/2020
+Última modificação: 13/04/2020
 
 */
 
@@ -94,6 +94,8 @@ Data Fim: XX/XX/2020
 
 	}
 
+	//verifica a existencia de mais de uma dupla em sequencia
+	//Regra: Ter no máximo um conjunto de dois números em sequência; 
 	function numerosEmSequencia($valor1, $valor2, $valor3, $valor4, $valor5, $valor6){
 
 		$sequencia = 0;
@@ -116,6 +118,47 @@ Data Fim: XX/XX/2020
 		if($sequencia > 1)
 			return false;
 
+
+		return true;
+
+	}
+
+	//Ter números no mínimo em 3 linhas e no máximo em 4 linhas;
+	function numerosEmTresOuQuatroLinha($valor1, $valor2, $valor3, $valor4, $valor5, $valor6){
+
+		$linha1 = 0; $linha2 = 0; $linha3 = 0;
+		$linha4 = 0; $linha5 = 0; $linha6 = 0;
+
+		if(($valor1 >=1 && $valor1 <= 10) || ($valor2 >=1 && $valor2 <= 10) || ($valor3 >=1 && $valor3 <= 10) || 
+		   ($valor4 >=1 && $valor4 <= 10) || ($valor5 >=1 && $valor5 <= 10) || ($valor6 >=1 && $valor6 <= 10))
+			$linha1 ++;
+		
+		if(($valor1 >=11 && $valor1 <= 20) || ($valor2 >=11 && $valor2 <= 20) || ($valor3 >=11 && $valor3 <= 20) || 
+		   ($valor4 >=11 && $valor4 <= 20) || ($valor5 >=11 && $valor5 <= 20) || ($valor6 >=11 && $valor6 <= 20))
+			$linha2 ++;
+
+		if(($valor1 >=21 && $valor1 <= 30) || ($valor2 >=21 && $valor2 <= 30) || ($valor3 >=21 && $valor3 <= 30) || 
+		   ($valor4 >=21 && $valor4 <= 30) || ($valor5 >=21 && $valor5 <= 30) || ($valor6 >=21 && $valor6 <= 30))
+			$linha3 ++;
+
+		if(($valor1 >=31 && $valor1 <= 40) || ($valor2 >=31 && $valor2 <= 40) || ($valor3 >=31 && $valor3 <= 40) || 
+		   ($valor4 >=31 && $valor4 <= 40) || ($valor5 >=31 && $valor5 <= 40) || ($valor6 >=31 && $valor6 <= 40))
+			$linha4 ++;
+
+		if(($valor1 >=41 && $valor1 <= 50) || ($valor2 >=41 && $valor2 <= 50) || ($valor3 >=41 && $valor3 <= 50) || 
+		   ($valor4 >=41 && $valor4 <= 50) || ($valor5 >=41 && $valor5 <= 50) || ($valor6 >=41 && $valor6 <= 50))
+			$linha5 ++;
+
+		if(($valor1 >=51 && $valor1 <= 60) || ($valor2 >=51 && $valor2 <= 60) || ($valor3 >=51 && $valor3 <= 60) || 
+		   ($valor4 >=51 && $valor4 <= 60) || ($valor5 >=51 && $valor5 <= 60) || ($valor6 >=51 && $valor6 <= 60))
+			$linha6 ++;
+
+
+		//echo ($linha1 + $linha2 + $linha3 + $linha4 + $linha5 + $linha6);
+
+		if(($linha1 + $linha2 + $linha3 + $linha4 + $linha5 + $linha6) < 3 ||
+	       ($linha1 + $linha2 + $linha3 + $linha4 + $linha5 + $linha6) > 4)
+			return false;
 
 		return true;
 
@@ -181,7 +224,7 @@ Data Fim: XX/XX/2020
 
 
 	/*Cria as combinações*/
-	/**/	
+	/*	*/
 
 	for($i1 = 0; $i1 < 60; $i1++){
 		for($i2 = 0; $i2 < 60; $i2++){
@@ -193,7 +236,8 @@ Data Fim: XX/XX/2020
 							if(numerosEmSequencia($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
 							   numerosDiferentes($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
 							   numeroAnteriorMenor($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
-							   quatroOuMenosParesOuImpares($numero1, $numero2, $numero3, $numero4, $numero5, $numero6)){
+							   quatroOuMenosParesOuImpares($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
+							   numerosEmTresOuQuatroLinha($numero1, $numero2, $numero3, $numero4, $numero5, $numero6)){
 								
 								echo "</br>C ".$combinacao.": [ ".$numero1." / ".$numero2." / ".$numero3." / ".$numero4." / ".$numero5." / ".$numero6." ]";
 								
@@ -224,8 +268,9 @@ Data Fim: XX/XX/2020
 	}
 
 
+	//echo $combinacao;
 
-	
+//travou no 442.577	
 
 ?>
 
