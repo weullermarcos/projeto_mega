@@ -8,7 +8,7 @@ Autor: Weuller Marcos - Engenheiro de Computação
 Data Inicio: 03/04/2020
 Data Fim: XX/XX/2020
 
-Última modificação: 13/04/2020
+Última modificação: 20/04/2020
 
 */
 
@@ -164,6 +164,70 @@ Data Fim: XX/XX/2020
 
 	}
 
+		//Ter No máximo 3 números por linha;
+	function noMaximoTresNumerosPorLinha($valor1, $valor2, $valor3, $valor4, $valor5, $valor6){
+
+		$linha1 = 0; $linha2 = 0; $linha3 = 0;
+		$linha4 = 0; $linha5 = 0; $linha6 = 0;
+
+		if(($valor1 >=1 && $valor1 <= 10)) $linha1 ++;
+		if(($valor2 >=1 && $valor2 <= 10)) $linha1 ++;
+		if(($valor3 >=1 && $valor3 <= 10)) $linha1 ++;
+		if(($valor4 >=1 && $valor4 <= 10)) $linha1 ++;
+		if(($valor5 >=1 && $valor5 <= 10)) $linha1 ++;
+		if(($valor6 >=1 && $valor6 <= 10)) $linha1 ++;
+		//se tiver mais de 3 números na primeira linha retorna false e não imprime
+		if($linha1 > 3) return false;
+
+		if(($valor1 >=11 && $valor1 <= 20)) $linha2 ++;
+		if(($valor2 >=11 && $valor2 <= 20)) $linha2 ++;
+		if(($valor3 >=11 && $valor3 <= 20)) $linha2 ++;
+		if(($valor4 >=11 && $valor4 <= 20)) $linha2 ++;
+		if(($valor5 >=11 && $valor5 <= 20)) $linha2 ++;
+		if(($valor6 >=11 && $valor6 <= 20)) $linha2 ++;
+		//se tiver mais de 3 números na segunda linha retorna false e não imprime
+		if($linha2 > 3) return false;
+
+		if(($valor1 >=21 && $valor1 <= 30)) $linha3 ++;
+		if(($valor2 >=21 && $valor2 <= 30)) $linha3 ++;
+		if(($valor3 >=21 && $valor3 <= 30)) $linha3 ++;
+		if(($valor4 >=21 && $valor4 <= 30)) $linha3 ++;
+		if(($valor5 >=21 && $valor5 <= 30)) $linha3 ++;
+		if(($valor6 >=21 && $valor6 <= 30)) $linha3 ++;
+		//se tiver mais de 3 números na terceira linha retorna false e não imprime
+		if($linha3 > 3) return false;
+
+		if(($valor1 >=31 && $valor1 <= 40)) $linha4 ++;
+		if(($valor2 >=31 && $valor2 <= 40)) $linha4 ++;
+		if(($valor3 >=31 && $valor3 <= 40)) $linha4 ++;
+		if(($valor4 >=31 && $valor4 <= 40)) $linha4 ++;
+		if(($valor5 >=31 && $valor5 <= 40)) $linha4 ++;
+		if(($valor6 >=31 && $valor6 <= 40)) $linha4 ++;
+		//se tiver mais de 3 números na quarta linha retorna false e não imprime
+		if($linha4 > 3) return false;
+
+		if(($valor1 >=41 && $valor1 <= 50)) $linha5 ++;
+		if(($valor2 >=41 && $valor2 <= 50)) $linha5 ++;
+		if(($valor3 >=41 && $valor3 <= 50)) $linha5 ++;
+		if(($valor4 >=41 && $valor4 <= 50)) $linha5 ++;
+		if(($valor5 >=41 && $valor5 <= 50)) $linha5 ++;
+		if(($valor6 >=41 && $valor6 <= 50)) $linha5 ++;
+		//se tiver mais de 3 números na quinta linha retorna false e não imprime
+		if($linha5 > 3) return false;
+
+		if(($valor1 >=51 && $valor1 <= 60)) $linha6 ++;
+		if(($valor2 >=51 && $valor2 <= 60)) $linha6 ++;
+		if(($valor3 >=51 && $valor3 <= 60)) $linha6 ++;
+		if(($valor4 >=51 && $valor4 <= 60)) $linha6 ++;
+		if(($valor5 >=51 && $valor5 <= 60)) $linha6 ++;
+		if(($valor6 >=51 && $valor6 <= 60)) $linha6 ++;
+		//se tiver mais de 3 números na sexta linha retorna false e não imprime
+		if($linha6 > 3) return false;		
+
+		return true;
+
+	}
+
 	//Verifica se existe No mínimo um número primo ímpar; 
 	//e no máximo 3 números primos ímpares;
 	function primosImpares($valor1, $valor2, $valor3, $valor4, $valor5, $valor6){
@@ -237,7 +301,8 @@ Data Fim: XX/XX/2020
 							   numerosDiferentes($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
 							   numeroAnteriorMenor($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
 							   quatroOuMenosParesOuImpares($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
-							   numerosEmTresOuQuatroLinha($numero1, $numero2, $numero3, $numero4, $numero5, $numero6)){
+							   numerosEmTresOuQuatroLinha($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
+							   noMaximoTresNumerosPorLinha($numero1, $numero2, $numero3, $numero4, $numero5, $numero6)){
 								
 								echo "</br>C ".$combinacao.": [ ".$numero1." / ".$numero2." / ".$numero3." / ".$numero4." / ".$numero5." / ".$numero6." ]";
 								
@@ -268,7 +333,7 @@ Data Fim: XX/XX/2020
 	}
 
 
-	//echo $combinacao;
+	echo $combinacao;
 
 //travou no 442.577	
 
