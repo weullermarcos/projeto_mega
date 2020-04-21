@@ -78,6 +78,12 @@ Data Fim: XX/XX/2020
 			$par ++;
 		else
 			$impar++;
+		
+		//[OTIMIZAÇÃO] - se já tiver mais do que 4 pares ou impares já pode parar a execução
+		//se tiverem mais do que 4 pares ou 4 impares retorna falso
+		if($par > 4 || $impar > 4)
+			return false;
+
 
 		if(($valor6 % 2) == 0)
 			$par ++;
