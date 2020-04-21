@@ -8,7 +8,7 @@ Autor: Weuller Marcos - Engenheiro de Computação
 Data Inicio: 03/04/2020
 Data Fim: XX/XX/2020
 
-Última modificação: 20/04/2020
+Última modificação: 21/04/2020
 
 */
 
@@ -304,7 +304,7 @@ Data Fim: XX/XX/2020
 							   numerosEmTresOuQuatroLinha($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
 							   noMaximoTresNumerosPorLinha($numero1, $numero2, $numero3, $numero4, $numero5, $numero6)){
 								
-								echo "</br>C ".$combinacao.": [ ".$numero1." / ".$numero2." / ".$numero3." / ".$numero4." / ".$numero5." / ".$numero6." ]";
+								echo "</br>".$combinacao.": [ ".$numero1." / ".$numero2." / ".$numero3." / ".$numero4." / ".$numero5." / ".$numero6." ]";
 								
 								$combinacao++;
 							}
@@ -336,6 +336,8 @@ Data Fim: XX/XX/2020
 	echo $combinacao;
 
 //travou no 442.577	
+// dia 21/04/2020: Travou no 305.605 - [ 1 / 3 / 10 / 43 / 56 / 59 ]
+
 
 ?>
 
