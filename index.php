@@ -2,13 +2,16 @@
 
 ini_set('max_execution_time', 2400); //aumentando tempo de execução do programa para 300 segundos ou 5 minutos
 
+$arquivo = fopen("combinacoes.txt", "w") or die("Erro ao criar arquivo!");
+
+
 /*
 
 Autor: Weuller Marcos - Engenheiro de Computação
 Data Inicio: 03/04/2020
 Data Fim: XX/XX/2020
 
-Última modificação: 21/04/2020
+Última modificação: 21/05/2020
 
 */
 
@@ -16,6 +19,7 @@ Data Fim: XX/XX/2020
 	// Função que verifica se os numeros informados são diferentes entre si
 	// Recebe como parâmetro os números que serão verificados
 	// Retorna true ou false informando se os números são diferentes entre si ou não
+	// Objetivo é evitar de ter algo como: [1,2,3,4,6,6]
 	function numerosDiferentes($valor1, $valor2, $valor3, $valor4, $valor5, $valor6){
 
 
@@ -34,6 +38,7 @@ Data Fim: XX/XX/2020
 	// Função que verifica se o numero anterior é menor que o seguinte da combinação
 	// Recebe como parâmetro os números que serão verificados
 	// Retorna true ou false informando se o número anterior for menor e false caso contrário
+	// Objetivo é evitar de ter algo como: [1,2,3,4,5,6] e [1,2,3,4,6,5];
 	function numeroAnteriorMenor($valor1, $valor2, $valor3, $valor4, $valor5, $valor6){
 
 		if($valor5 > $valor6 || $valor4 > $valor5 || $valor3 > $valor4 || $valor2 > $valor3 || $valor1 > $valor2){
@@ -45,9 +50,10 @@ Data Fim: XX/XX/2020
 
 	}
 
-	// Função que verifica se existem quatro ou ou menos números pares/impares
+	// Função que verifica se existem mais de 4 números pares/impares
 	// Recebe como parâmetro os números que serão verificados
 	// Retorna true ou false informando se existem quatro ou menos números pares/impares
+	// Objetivo é evitar de ter algo como: [2,4,6,8,10,12] e [1,2,4,6,8,10];
 	function quatroOuMenosParesOuImpares($valor1, $valor2, $valor3, $valor4, $valor5, $valor6){
 
 		$par = 0;
@@ -102,27 +108,37 @@ Data Fim: XX/XX/2020
 
 	//verifica a existencia de mais de uma dupla em sequencia
 	//Regra: Ter no máximo um conjunto de dois números em sequência; 
+	// Objetivo é evitar de ter algo como: [1,2,3,4,5,6] ou [1,2,5,6,9,10];
 	function numerosEmSequencia($valor1, $valor2, $valor3, $valor4, $valor5, $valor6){
 
 		$sequencia = 0;
 
-		if(($valor1 + 1) == $valor2)
-			$sequencia ++;
+		//Possível serquência 1
+		if(($valor1 + 1) == $valor2) $sequencia ++;
 
-		if(($valor2 + 1) == $valor3)
-			$sequencia ++;
 
-		if(($valor3 + 1) == $valor4)
-			$sequencia ++;
+		//Possível serquência 2
+		if(($valor2 + 1) == $valor3) $sequencia ++;
+		//[OTIMIZAÇÃO] - se já tiver identificado mais do que uma sequência retorna falso;
+		if($sequencia > 1) return false;
 
-		if(($valor4 + 1) == $valor5)
-			$sequencia ++;
 
-		if(($valor5 + 1) == $valor6)
-			$sequencia ++;
+		//Possível serquência 3
+		if(($valor3 + 1) == $valor4) $sequencia ++;
+		//[OTIMIZAÇÃO] - se já tiver identificado mais do que uma sequência retorna falso;
+		if($sequencia > 1) return false;
 
-		if($sequencia > 1)
-			return false;
+
+		//Possível serquência 4
+		if(($valor4 + 1) == $valor5) $sequencia ++;
+		//[OTIMIZAÇÃO] - se já tiver identificado mais do que uma sequência retorna falso;
+		if($sequencia > 1)return false;
+
+
+		//Possível serquência 5
+		if(($valor5 + 1) == $valor6) $sequencia ++;
+		//[OTIMIZAÇÃO] - se já tiver identificado mais do que uma sequência retorna falso;
+		if($sequencia > 1) return false;
 
 
 		return true;
@@ -296,6 +312,8 @@ Data Fim: XX/XX/2020
 	/*Cria as combinações*/
 	/*	*/
 
+	echo "</br>Iniciando criação do arquivo...";
+
 	for($i1 = 0; $i1 < 60; $i1++){
 		for($i2 = 0; $i2 < 60; $i2++){
 			for($i3 = 0; $i3 < 60; $i3++){
@@ -310,7 +328,11 @@ Data Fim: XX/XX/2020
 							   numerosEmTresOuQuatroLinha($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
 							   noMaximoTresNumerosPorLinha($numero1, $numero2, $numero3, $numero4, $numero5, $numero6)){
 								
-								echo "</br>".$combinacao.": [".$numero1." / ".$numero2." / ".$numero3." / ".$numero4." / ".$numero5." / ".$numero6."]";
+								//echo "</br>".$combinacao.": [".$numero1." / ".$numero2." / ".$numero3." / ".$numero4." / ".$numero5." / ".$numero6."]";
+
+								$txt = "\n".$combinacao.": [".$numero1." / ".$numero2." / ".$numero3." / ".$numero4." / ".$numero5." / ".$numero6."]";
+
+								fwrite($arquivo, $txt);
 								
 								$combinacao++;
 							}
@@ -339,12 +361,15 @@ Data Fim: XX/XX/2020
 	}
 
 
+	fclose($arquivo);
+
+	echo "</br>Finalizada criação do arquivo. Número de ítens: ".$combinacao;
 	echo $combinacao;
 
 //Travou no 442.577	
 //Dia 21/04/2020: Travou no 305.605 - [ 1 / 3 / 10 / 43 / 56 / 59 ] - Antes das otimizações - até: noMaximoTresNumerosPorLinha;
 //Dia 21/04/2020: Travou no 604.072 - [ 1 / 4 / 19 / 22 / 25 / 56 ] - Com a primeira otimização - até: noMaximoTresNumerosPorLinha;
-
+//Dia 21/05/2020: Travou no 362.694 - [ 1 / 3 / 18 / 31 / 38 / 47 ] - com a segunda otimização
 
 
 ?>
