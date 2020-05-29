@@ -11,7 +11,7 @@ Autor: Weuller Marcos - Engenheiro de Computação
 Data Inicio: 03/04/2020
 Data Fim: XX/XX/2020
 
-Última modificação: 26/05/2020
+Última modificação: 28/05/2020
 
 */
 
@@ -59,30 +59,20 @@ Data Fim: XX/XX/2020
 		$impar = 0;
 
 
-		if(($valor1 % 2) == 0)
-			$par ++;
-		else
-			$impar++;
+		if(($valor1 % 2) == 0) $par ++;
+		else $impar++;
 
-		if(($valor2 % 2) == 0)
-			$par ++;
-		else
-			$impar++;
+		if(($valor2 % 2) == 0) $par ++;
+		else $impar++;
 
-		if(($valor3 % 2) == 0)
-			$par ++;
-		else
-			$impar++;
+		if(($valor3 % 2) == 0) $par ++;
+		else $impar++;
 
-		if(($valor4 % 2) == 0)
-			$par ++;
-		else
-			$impar++;
+		if(($valor4 % 2) == 0) $par ++;
+		else $impar++;
 
-		if(($valor5 % 2) == 0)
-			$par ++;
-		else
-			$impar++;
+		if(($valor5 % 2) == 0) $par ++;
+		else $impar++;
 		
 		//[OTIMIZAÇÃO] - se já tiver mais do que 4 pares ou impares já pode parar a execução
 		//se tiverem mais do que 4 pares ou 4 impares retorna falso
@@ -90,10 +80,8 @@ Data Fim: XX/XX/2020
 			return false;
 
 
-		if(($valor6 % 2) == 0)
-			$par ++;
-		else
-			$impar++;
+		if(($valor6 % 2) == 0) $par ++;
+		else $impar++;
 
 		//se tiverem mais do que 4 pares ou 4 impares retorna falso
 		if($par > 4 || $impar > 4)
