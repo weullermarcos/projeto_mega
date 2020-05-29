@@ -1,6 +1,6 @@
 <?php
 
-ini_set('max_execution_time', 2400); //aumentando tempo de execução do programa para 300 segundos ou 5 minutos
+ini_set('max_execution_time', 28800); //aumentando tempo de execução do programa para 300 segundos ou 5 minutos
 
 $arquivo = fopen("combinacoes.txt", "w") or die("Erro ao criar arquivo!");
 
@@ -11,11 +11,10 @@ Autor: Weuller Marcos - Engenheiro de Computação
 Data Inicio: 03/04/2020
 Data Fim: XX/XX/2020
 
-Última modificação: 21/05/2020
+Última modificação: 26/05/2020
 
 */
 
-	
 	// Função que verifica se os numeros informados são diferentes entre si
 	// Recebe como parâmetro os números que serão verificados
 	// Retorna true ou false informando se os números são diferentes entre si ou não
@@ -250,6 +249,43 @@ Data Fim: XX/XX/2020
 
 	}
 
+	function noMaximoDoisNumerosPorColuna($valor1, $valor2, $valor3, $valor4, $valor5, $valor6){
+
+		#faz o resto da divisão por 10 para saber em qual coluna cada valor está
+		$resto1 = $valor1 % 10; $resto2 = $valor2 % 10; $resto3 = $valor3 % 10;
+		$resto4 = $valor4 % 10; $resto5 = $valor5 % 10; $resto6 = $valor6 % 10;
+
+		#criar vetor com a coluna de cada valor
+		$vetor = [$resto1, $resto2, $resto3, $resto4, $resto5, $resto6];
+
+		$contagem = array_count_values($vetor);
+
+		$coluna1 = 0; $coluna2 = 0; $coluna3 = 0;
+		$coluna4 = 0; $coluna5 = 0; $coluna6 = 0;
+
+		$coluna1 = is_null($contagem['1']) ? 0 : $contagem['1'];
+		if($coluna1 > 2) return false; //se tiver mais de dois números na coluna 1 não imprime
+
+		$coluna2 = is_null($contagem['2']) ? 0 : $contagem['2'];
+		if($coluna2 > 2) return false; //se tiver mais de dois números na coluna 2 não imprime
+
+		$coluna3 = is_null($contagem['3']) ? 0 : $contagem['3'];
+		if($coluna3 > 2) return false; //se tiver mais de dois números na coluna 3 não imprime
+
+		$coluna4 = is_null($contagem['4']) ? 0 : $contagem['4'];
+		if($coluna4 > 2) return false; //se tiver mais de dois números na coluna 4 não imprime
+
+		$coluna5 = is_null($contagem['5']) ? 0 : $contagem['5'];
+		if($coluna5 > 2) return false; //se tiver mais de dois números na coluna 5 não imprime
+
+		$coluna6 = is_null($contagem['6']) ? 0 : $contagem['6'];
+		if($coluna6 > 2) return false; //se tiver mais de dois números na coluna 6 não imprime
+
+
+		return true;
+
+	}
+
 	//Verifica se existe No mínimo um número primo ímpar; 
 	//e no máximo 3 números primos ímpares;
 	function primosImpares($valor1, $valor2, $valor3, $valor4, $valor5, $valor6){
@@ -321,18 +357,19 @@ Data Fim: XX/XX/2020
 					for($i5 = 0; $i5 < 60; $i5++){
 						for($i6 = 0; $i6 < 60; $i6++){
 
-							if(numerosEmSequencia($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
-							   numerosDiferentes($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
+							if(numerosDiferentes($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
+							   numerosEmSequencia($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
 							   numeroAnteriorMenor($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
 							   quatroOuMenosParesOuImpares($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
 							   numerosEmTresOuQuatroLinha($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
-							   noMaximoTresNumerosPorLinha($numero1, $numero2, $numero3, $numero4, $numero5, $numero6)){
+							   noMaximoTresNumerosPorLinha($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
+							   noMaximoDoisNumerosPorColuna($numero1, $numero2, $numero3, $numero4, $numero5, $numero6)){
 								
-								//echo "</br>".$combinacao.": [".$numero1." / ".$numero2." / ".$numero3." / ".$numero4." / ".$numero5." / ".$numero6."]";
+								echo "</br>".$combinacao.": [".$numero1." / ".$numero2." / ".$numero3." / ".$numero4." / ".$numero5." / ".$numero6."]";
 
-								$txt = "\n".$combinacao.": [".$numero1." / ".$numero2." / ".$numero3." / ".$numero4." / ".$numero5." / ".$numero6."]";
+								//$txt = "\n".$combinacao.": [".$numero1." / ".$numero2." / ".$numero3." / ".$numero4." / ".$numero5." / ".$numero6."]";
 
-								fwrite($arquivo, $txt);
+								//fwrite($arquivo, $txt);
 								
 								$combinacao++;
 							}
@@ -366,10 +403,18 @@ Data Fim: XX/XX/2020
 	echo "</br>Finalizada criação do arquivo. Número de ítens: ".$combinacao;
 	echo $combinacao;
 
+	
+
+ 
+
 //Travou no 442.577	
 //Dia 21/04/2020: Travou no 305.605 - [ 1 / 3 / 10 / 43 / 56 / 59 ] - Antes das otimizações - até: noMaximoTresNumerosPorLinha;
 //Dia 21/04/2020: Travou no 604.072 - [ 1 / 4 / 19 / 22 / 25 / 56 ] - Com a primeira otimização - até: noMaximoTresNumerosPorLinha;
 //Dia 21/05/2020: Travou no 362.694 - [ 1 / 3 / 18 / 31 / 38 / 47 ] - com a segunda otimização
+
+//Dia 25/05/2020: Salvando em arquivo (2400 segundos): 6.819.149 resultados e deu timeout  
+//Dia 26/05/2020: Salvando em arquivo (14400 segundos): 20.561.288 resultados e deu timeout  
+//Dia 28/05/2020: Salvando em arquivo (28800 segundos): 24.462.467 resultados e deu timeout  
 
 
 ?>
