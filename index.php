@@ -249,7 +249,11 @@ Data Fim: XX/XX/2020
 
 	}
 
-	function noMaximoDoisNumerosPorColuna($valor1, $valor2, $valor3, $valor4, $valor5, $valor6){
+	// Regra: Ficar no máximo dois números por coluna
+	// Regra: não podendo duas ou mais colunas com 2 números - Então somente uma coluna pode ter 2 números;
+	function noMaximoDoisNumerosPorColunaEmUnaUnicaCoulna($valor1, $valor2, $valor3, $valor4, $valor5, $valor6){
+
+		$colunasComDoisNumeros = 0;
 
 		#faz o resto da divisão por 10 para saber em qual coluna cada valor está
 		$resto1 = $valor1 % 10; $resto2 = $valor2 % 10; $resto3 = $valor3 % 10;
@@ -260,27 +264,53 @@ Data Fim: XX/XX/2020
 
 		$contagem = array_count_values($vetor);
 
-		$coluna1 = 0; $coluna2 = 0; $coluna3 = 0;
-		$coluna4 = 0; $coluna5 = 0; $coluna6 = 0;
+		$coluna1 = 0; $coluna2 = 0; $coluna3 = 0; $coluna4 = 0; $coluna5 = 0; 
+		$coluna6 = 0; $coluna7 = 0; $coluna8 = 0; $coluna9 = 0; $coluna0 = 0;
 
 		$coluna1 = is_null($contagem['1']) ? 0 : $contagem['1'];
 		if($coluna1 > 2) return false; //se tiver mais de dois números na coluna 1 não imprime
+		if($coluna1 == 2) $colunasComDoisNumeros++; //conta quantas colunas tem dois números
 
 		$coluna2 = is_null($contagem['2']) ? 0 : $contagem['2'];
 		if($coluna2 > 2) return false; //se tiver mais de dois números na coluna 2 não imprime
+		if($coluna2 == 2) $colunasComDoisNumeros++; //conta quantas colunas tem dois números
 
 		$coluna3 = is_null($contagem['3']) ? 0 : $contagem['3'];
 		if($coluna3 > 2) return false; //se tiver mais de dois números na coluna 3 não imprime
+		if($coluna3 == 2) $colunasComDoisNumeros++; //conta quantas colunas tem dois números
 
 		$coluna4 = is_null($contagem['4']) ? 0 : $contagem['4'];
 		if($coluna4 > 2) return false; //se tiver mais de dois números na coluna 4 não imprime
+		if($coluna4 == 2) $colunasComDoisNumeros++; //conta quantas colunas tem dois números
 
 		$coluna5 = is_null($contagem['5']) ? 0 : $contagem['5'];
 		if($coluna5 > 2) return false; //se tiver mais de dois números na coluna 5 não imprime
+		if($coluna5 == 2) $colunasComDoisNumeros++; //conta quantas colunas tem dois números
 
 		$coluna6 = is_null($contagem['6']) ? 0 : $contagem['6'];
 		if($coluna6 > 2) return false; //se tiver mais de dois números na coluna 6 não imprime
+		if($coluna6 == 2) $colunasComDoisNumeros++; //conta quantas colunas tem dois números
 
+		$coluna7 = is_null($contagem['7']) ? 0 : $contagem['7'];
+		if($coluna7 > 2) return false; //se tiver mais de dois números na coluna 7 não imprime
+		if($coluna7 == 2) $colunasComDoisNumeros++; //conta quantas colunas tem dois números
+
+		$coluna8 = is_null($contagem['8']) ? 0 : $contagem['8'];
+		if($coluna8 > 2) return false; //se tiver mais de dois números na coluna 8 não imprime
+		if($coluna8 == 2) $colunasComDoisNumeros++; //conta quantas colunas tem dois números
+
+		$coluna9 = is_null($contagem['9']) ? 0 : $contagem['9'];
+		if($coluna9 > 2) return false; //se tiver mais de dois números na coluna 9 não imprime
+		if($coluna9 == 2) $colunasComDoisNumeros++; //conta quantas colunas tem dois números
+
+		$coluna0 = is_null($contagem['0']) ? 0 : $contagem['0'];
+		if($coluna0 > 2) return false; //se tiver mais de dois números na coluna 0 não imprime
+		if($coluna0 == 2) $colunasComDoisNumeros++; //conta quantas colunas tem dois números
+
+
+		//se houver mais de uma coluna com dois número retorna false e não imprime
+		if($colunasComDoisNumeros > 1)
+			return false;
 
 		return true;
 
@@ -363,7 +393,7 @@ Data Fim: XX/XX/2020
 							   quatroOuMenosParesOuImpares($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
 							   numerosEmTresOuQuatroLinha($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
 							   noMaximoTresNumerosPorLinha($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
-							   noMaximoDoisNumerosPorColuna($numero1, $numero2, $numero3, $numero4, $numero5, $numero6)){
+							   noMaximoDoisNumerosPorColunaEmUnaUnicaCoulna($numero1, $numero2, $numero3, $numero4, $numero5, $numero6)){
 								
 								echo "</br>".$combinacao.": [".$numero1." / ".$numero2." / ".$numero3." / ".$numero4." / ".$numero5." / ".$numero6."]";
 
