@@ -383,11 +383,11 @@ Data Fim: XX/XX/2020
 							   noMaximoTresNumerosPorLinha($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
 							   noMaximoDoisNumerosPorColunaEmUnaUnicaCoulna($numero1, $numero2, $numero3, $numero4, $numero5, $numero6)){
 								
-								echo "</br>".$combinacao.": [".$numero1." / ".$numero2." / ".$numero3." / ".$numero4." / ".$numero5." / ".$numero6."]";
+								//echo "</br>".$combinacao.": [".$numero1." / ".$numero2." / ".$numero3." / ".$numero4." / ".$numero5." / ".$numero6."]";
 
-								//$txt = "\n".$combinacao.": [".$numero1." / ".$numero2." / ".$numero3." / ".$numero4." / ".$numero5." / ".$numero6."]";
+								$txt = "\n".$combinacao.": [".$numero1." / ".$numero2." / ".$numero3." / ".$numero4." / ".$numero5." / ".$numero6."]";
 
-								//fwrite($arquivo, $txt);
+								fwrite($arquivo, $txt);
 								
 								$combinacao++;
 							}
