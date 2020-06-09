@@ -13,7 +13,6 @@ Data Inicio: 03/04/2020
 Data Fim: XX/XX/2020
 
 Última modificação: 08/06/2020
-
 */
 
 // Função que verifica se os numeros informados são diferentes entre si
@@ -46,7 +45,6 @@ function numeroAnteriorMenor($valor1, $valor2, $valor3, $valor4, $valor5, $valor
     }
 
     return true;
-
 }
 
 // Função que verifica se existem mais de 4 números pares/impares
@@ -90,7 +88,6 @@ function quatroOuMenosParesOuImpares($valor1, $valor2, $valor3, $valor4, $valor5
 
     //retorna true, tem 4 pares/impares ou menos
     return true;
-
 }
 
 //verifica a existencia de mais de uma dupla em sequencia
@@ -129,7 +126,6 @@ function numerosEmSequencia($valor1, $valor2, $valor3, $valor4, $valor5, $valor6
 
 
     return true;
-
 }
 
 //Ter números no mínimo em 3 linhas e no máximo em 4 linhas;
@@ -170,7 +166,6 @@ function numerosEmTresOuQuatroLinha($valor1, $valor2, $valor3, $valor4, $valor5,
         return false;
 
     return true;
-
 }
 
         //Ter No máximo 3 números por linha;
@@ -234,7 +229,6 @@ function noMaximoTresNumerosPorLinha($valor1, $valor2, $valor3, $valor4, $valor5
     if($linha6 > 3) return false;		
 
     return true;
-
 }
 
 // Regra: Ficar no máximo dois números por coluna
@@ -302,7 +296,6 @@ function noMaximoDoisNumerosPorColunaEmUnaUnicaCoulna($valor1, $valor2, $valor3,
         return false;
 
     return true;
-
 }
 
 //Verifica se existe No mínimo um número primo ímpar; 
@@ -343,7 +336,6 @@ function primosImpares($valor1, $valor2, $valor3, $valor4, $valor5, $valor6){
 
 
     return true;
-
 }
 
 
@@ -360,46 +352,46 @@ echo "</br>Iniciando criação do arquivo...";
 
 for($i1 = 0; $i1 < 60; $i1++){
     for($i2 = 0; $i2 < 60; $i2++){
-            for($i3 = 0; $i3 < 60; $i3++){
-                    for($i4 = 0; $i4 < 60; $i4++){
-                            for($i5 = 0; $i5 < 60; $i5++){
-                                    for($i6 = 0; $i6 < 60; $i6++){
+        for($i3 = 0; $i3 < 60; $i3++){
+            for($i4 = 0; $i4 < 60; $i4++){
+                for($i5 = 0; $i5 < 60; $i5++){
+                    for($i6 = 0; $i6 < 60; $i6++){
 
-                                            if(numerosDiferentes($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
-                                               numerosEmSequencia($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
-                                               numeroAnteriorMenor($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
-                                               quatroOuMenosParesOuImpares($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
-                                               numerosEmTresOuQuatroLinha($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
-                                               noMaximoTresNumerosPorLinha($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
-                                               noMaximoDoisNumerosPorColunaEmUnaUnicaCoulna($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
-                                               primosImpares($numero1, $numero2, $numero3, $numero4, $numero5, $numero6)){
+                        if(numerosDiferentes($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
+                           numerosEmSequencia($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
+                           numeroAnteriorMenor($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
+                           quatroOuMenosParesOuImpares($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
+                           numerosEmTresOuQuatroLinha($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
+                           noMaximoTresNumerosPorLinha($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
+                           noMaximoDoisNumerosPorColunaEmUnaUnicaCoulna($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
+                           primosImpares($numero1, $numero2, $numero3, $numero4, $numero5, $numero6)){
 
-                                                    //echo "</br>".$combinacao.": [".$numero1." / ".$numero2." / ".$numero3." / ".$numero4." / ".$numero5." / ".$numero6."]";
+                            //echo "</br>".$combinacao.": [".$numero1." / ".$numero2." / ".$numero3." / ".$numero4." / ".$numero5." / ".$numero6."]";
 
-                                                    $txt = "\n".$combinacao.": [".$numero1." / ".$numero2." / ".$numero3." / ".$numero4." / ".$numero5." / ".$numero6."]";
+                            $txt = "\n".$combinacao.": [".$numero1." / ".$numero2." / ".$numero3." / ".$numero4." / ".$numero5." / ".$numero6."]";
 
-                                                    fwrite($arquivo, $txt);
+                            fwrite($arquivo, $txt);
 
-                                                    $combinacao++;
-                                            }
+                            $combinacao++;
+                        }
 
-                                            $numero6++;	
-                                    }
-
-                                    $numero6 = 1;
-                                    $numero5++;	
-                            }
-
-                            $numero5 = 1;
-                            $numero4++;	
+                        $numero6++;	
                     }
 
-                    $numero4 = 1;
-                    $numero3++;
+                    $numero6 = 1;
+                    $numero5++;	
+                }
+
+                $numero5 = 1;
+                $numero4++;	
             }
 
-            $numero3 = 1;
-            $numero2++;
+            $numero4 = 1;
+            $numero3++;
+        }
+
+        $numero3 = 1;
+        $numero2++;
     }
 
     $numero2 = 1;
@@ -413,8 +405,6 @@ echo "</br>Finalizada criação do arquivo. Número de ítens: ".$combinacao;
 echo $combinacao;
 
 	
-
- 
 //Travou no 442.577	
 //Dia 21/04/2020: Travou no 305.605 - [ 1 / 3 / 10 / 43 / 56 / 59 ] - Antes das otimizações - até: noMaximoTresNumerosPorLinha;
 //Dia 21/04/2020: Travou no 604.072 - [ 1 / 4 / 19 / 22 / 25 / 56 ] - Com a primeira otimização - até: noMaximoTresNumerosPorLinha;
@@ -423,7 +413,7 @@ echo $combinacao;
 //Dia 25/05/2020: Salvando em arquivo (2400 segundos): 6.819.149 resultados e deu timeout  
 //Dia 26/05/2020: Salvando em arquivo (14400 segundos): 20.561.288 resultados e deu timeout  
 //Dia 28/05/2020: Salvando em arquivo (28800 segundos): 24.462.467 resultados e deu timeout  
-
+//
 
 ?>
 
