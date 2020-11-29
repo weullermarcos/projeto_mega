@@ -1,6 +1,7 @@
 <?php
 
-ini_set('max_execution_time', 28800); //aumentando tempo de execução do programa para 300 segundos ou 5 minutos
+error_reporting(E_ERROR | E_PARSE | E_CORE_ERROR | E_CORE_WARNING); //Mostra todos os erros SEM Warnings e SEM Notices
+ini_set('max_execution_time', 86400); //aumentando tempo de execução do programa para 24 horas - 86.400 segundos
 
 $arquivo = fopen("combinacoes.txt", "w") or die("Erro ao criar arquivo!");
 
@@ -10,42 +11,56 @@ $arquivo = fopen("combinacoes.txt", "w") or die("Erro ao criar arquivo!");
 Combinações possíveis: 50.063.860
 Autor: Weuller Marcos - Engenheiro de Computação
 Data Inicio: 03/04/2020
-Data Fim: XX/XX/2020
-
-Última modificação: 08/06/2020
+Última modificação: 29/11/2020
 */
+
+
+//Gera um array com n números aleatórios entre 1 e 60
+function geraNumerosAleatorios($quantidade){
+    
+    $todosOsNumeros = range(1, 60);
+    $aleatorio = array_rand($todosOsNumeros, $quantidade); //array_rand pega chaves e nao valores, com isso estava ocorrendo o número zero
+    
+    for($i = 0; $i < count($aleatorio); $i++){
+        
+        $aleatorio[$i] = $aleatorio[$i] + 1;
+    }
+    
+    return $aleatorio;    
+}
+
 
 // Função que verifica se os numeros informados são diferentes entre si
 // Recebe como parâmetro os números que serão verificados
 // Retorna true ou false informando se os números são diferentes entre si ou não
 // Objetivo é evitar de ter algo como: [1,2,3,4,6,6]
-function numerosDiferentes($valor1, $valor2, $valor3, $valor4, $valor5, $valor6){
-
-    if($valor1 == $valor2 || $valor1 == $valor3 || $valor1 == $valor4 || $valor1 == $valor5 || $valor1 == $valor6 ||
-       $valor2 == $valor3 || $valor2 == $valor4 || $valor2 == $valor5 || $valor2 == $valor6 ||
-       $valor3 == $valor4 || $valor3 == $valor5 || $valor3 == $valor6 ||
-       $valor4 == $valor5 || $valor4 == $valor6 ||
-       $valor5 == $valor6){
-
-        return false;
-    }
-
-    return true;
-}
+//function numerosDiferentes($valor1, $valor2, $valor3, $valor4, $valor5, $valor6){
+//
+//    if($valor1 == $valor2 || $valor1 == $valor3 || $valor1 == $valor4 || $valor1 == $valor5 || $valor1 == $valor6 ||
+//       $valor2 == $valor3 || $valor2 == $valor4 || $valor2 == $valor5 || $valor2 == $valor6 ||
+//       $valor3 == $valor4 || $valor3 == $valor5 || $valor3 == $valor6 ||
+//       $valor4 == $valor5 || $valor4 == $valor6 ||
+//       $valor5 == $valor6){
+//
+//        return false;
+//    }
+//
+//    return true;
+//}
 
 // Função que verifica se o numero anterior é menor que o seguinte da combinação
 // Recebe como parâmetro os números que serão verificados
 // Retorna true ou false informando se o número anterior for menor e false caso contrário
 // Objetivo é evitar de ter algo como: [1,2,3,4,5,6] e [1,2,3,4,6,5];
-function numeroAnteriorMenor($valor1, $valor2, $valor3, $valor4, $valor5, $valor6){
-
-    if($valor5 > $valor6 || $valor4 > $valor5 || $valor3 > $valor4 || $valor2 > $valor3 || $valor1 > $valor2){
-
-        return false;
-    }
-
-    return true;
-}
+//function numeroAnteriorMenor($valor1, $valor2, $valor3, $valor4, $valor5, $valor6){
+//
+//    if($valor5 > $valor6 || $valor4 > $valor5 || $valor3 > $valor4 || $valor2 > $valor3 || $valor1 > $valor2){
+//
+//        return false;
+//    }
+//
+//    return true;
+//}
 
 // Função que verifica se existem mais de 4 números pares/impares
 // Recebe como parâmetro os números que serão verificados
@@ -339,14 +354,62 @@ function primosImpares($valor1, $valor2, $valor3, $valor4, $valor5, $valor6){
 }
 
 
-$numero1 = 1; $numero2 = 1; $numero3 = 1; 
-$numero4 = 1; $numero5 = 1; $numero6 = 1;
+$numeros = geraNumerosAleatorios(40);
+
+echo "Números: [ ";
+
+for($contador = 0; $contador < count($numeros) ; $contador++){
+    
+    echo $numeros[$contador] . ", ";
+    
+}
+
+echo " ] <br/> <br/>";
+
 
 $combinacao = 1;
 
+for($a = 0; $a < (count($numeros) - 5); $a++){
+    
+    for($b = ($a + 1); $b < (count($numeros) - 4); $b++){
+    
+        for($c = ($b + 1); $c < (count($numeros) - 3); $c++){
+        
+            for($d = ($c + 1); $d < (count($numeros) - 2); $d++){
+            
+                for($e = ($d + 1); $e < (count($numeros) - 1); $e++){
+            
+                    for($f = ($e + 1); $f < (count($numeros) - 0); $f++){
+                        
+                        if(numerosEmSequencia($numeros[$a], $numeros[$b], $numeros[$c], $numeros[$d], $numeros[$e], $numeros[$f]) &&
+                           quatroOuMenosParesOuImpares($numeros[$a], $numeros[$b], $numeros[$c], $numeros[$d], $numeros[$e], $numeros[$f]) &&
+                           numerosEmTresOuQuatroLinha($numeros[$a], $numeros[$b], $numeros[$c], $numeros[$d], $numeros[$e], $numeros[$f]) &&
+                           noMaximoTresNumerosPorLinha($numeros[$a], $numeros[$b], $numeros[$c], $numeros[$d], $numeros[$e], $numeros[$f]) &&
+                           noMaximoDoisNumerosPorColunaEmUnaUnicaCoulna($numeros[$a], $numeros[$b], $numeros[$c], $numeros[$d], $numeros[$e], $numeros[$f]) &&
+                           primosImpares($numeros[$a], $numeros[$b], $numeros[$c], $numeros[$d], $numeros[$e], $numeros[$f]))
+                           {
+                            
+                                $txt = "\n" . $combinacao . ': ' . $numeros[$a] . ', ' . $numeros[$b] . ', ' . $numeros[$c] . ', ' 
+                                                                 . $numeros[$d] . ', ' . $numeros[$e] . ', ' . $numeros[$f];
+                        
+                                fwrite($arquivo, $txt);
+                     
+                                $combinacao++;
+                            
+                        }
+                    }
+                }
+            }
+        }
+    } 
+}
 
-/*Cria as combinações*/
-/*	*/
+
+/*Cria as combinações para todos os 60 Números
+
+$numero1 = 1; $numero2 = 1; $numero3 = 1; 
+$numero4 = 1; $numero5 = 1; $numero6 = 1;
+$combinacao = 1;
 
 echo "</br>Iniciando criação do arquivo...";
 
@@ -357,9 +420,10 @@ for($i1 = 0; $i1 < 60; $i1++){
                 for($i5 = 0; $i5 < 60; $i5++){
                     for($i6 = 0; $i6 < 60; $i6++){
 
-                        if(numerosDiferentes($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
-                           numerosEmSequencia($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
+                        if(
+                           numerosDiferentes($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
                            numeroAnteriorMenor($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
+                           numerosEmSequencia($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
                            quatroOuMenosParesOuImpares($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
                            numerosEmTresOuQuatroLinha($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
                            noMaximoTresNumerosPorLinha($numero1, $numero2, $numero3, $numero4, $numero5, $numero6) &&
@@ -399,21 +463,12 @@ for($i1 = 0; $i1 < 60; $i1++){
 }
 
 
+echo $combinacao;
+*/
+
 fclose($arquivo);
 
-echo "</br>Finalizada criação do arquivo. Número de ítens: ".$combinacao;
-echo $combinacao;
-
-	
-//Travou no 442.577	
-//Dia 21/04/2020: Travou no 305.605 - [ 1 / 3 / 10 / 43 / 56 / 59 ] - Antes das otimizações - até: noMaximoTresNumerosPorLinha;
-//Dia 21/04/2020: Travou no 604.072 - [ 1 / 4 / 19 / 22 / 25 / 56 ] - Com a primeira otimização - até: noMaximoTresNumerosPorLinha;
-//Dia 21/05/2020: Travou no 362.694 - [ 1 / 3 / 18 / 31 / 38 / 47 ] - com a segunda otimização
-
-//Dia 25/05/2020: Salvando em arquivo (2400 segundos): 6.819.149 resultados e deu timeout  
-//Dia 26/05/2020: Salvando em arquivo (14400 segundos): 20.561.288 resultados e deu timeout  
-//Dia 28/05/2020: Salvando em arquivo (28800 segundos): 24.462.467 resultados e deu timeout  
-//
+echo "</br>Finalizada criação do arquivo. Número de ítens: " . ($combinacao - 1);
 
 ?>
 
